@@ -11,3 +11,5 @@ function play ()
     requestAnimationFrame( play );
     ctx.drawImage( backGround, 0, 0, canvas.width, canvas.height )/*background*/
 }
+
+window.onload = play
