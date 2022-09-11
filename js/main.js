@@ -4,7 +4,8 @@ const canvas = document.getElementById( "canvas" );
 const ctx = canvas.getContext( "2d" );
 canvas.width = 1280;
 canvas.height = 768;
-let over = document.getElementById( "xd" )
+let hearth = document.getElementById( "hearts" )
+const over = document.getElementById( "xd" )
 /*utils*/
 function img ( src ) { let img = new Image(); img.src = src; return img; }
 let backGround = img( "./assets/towerDefense.png" );
@@ -50,12 +51,14 @@ function spawn ()
 }
 let health = 5
 let id
+hearth.innerText = health
 spawn()
+
 function play ()
 {
     id = requestAnimationFrame( play );
-    over.innerText = health
     ctx.drawImage( backGround, 0, 0, canvas.width, canvas.height )/*background*/
+    hearth.innerText = health
 
     for ( let i = enemies.length - 1; i >= 0; i-- )
     {
@@ -67,7 +70,7 @@ function play ()
         {
             enemies.shift()
             health--
-            console.log( health )
+            hearth.innerText = health
             if ( enemies.length === 0 )
             {
                 wave += 2;
@@ -132,7 +135,11 @@ function play ()
     } )
 }
 
-window.onload = play
+window.onload = function ()
+{
+    console.log( hearth )
+    play()
+}
 const mouse = {
     x: undefined,
     y: undefined,
@@ -141,7 +148,7 @@ const mouse = {
 function gameOver ()
 {
     cancelAnimationFrame( id )
-    
+
     over.style.visibility = "visible"
 }
 canvas.addEventListener( "click", e =>
@@ -176,6 +183,11 @@ window.addEventListener( "mousemove", e =>
             break
         }
     }
+} )
+window.addEventListener( "mouseleave", e =>
+{
+    mouse.x = 0
+    mouse.y = 0
 } )
 
 window.addEventListener( "keypress", e =>
