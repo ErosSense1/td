@@ -6,7 +6,8 @@ canvas.width = 1280;
 canvas.height = 768;
 let hearth = document.getElementById( "hearts" )
 const over = document.getElementById( "xd" )
-/*utils*/
+let coins = document.getElementById( "coins" )
+
 function img ( src ) { let img = new Image(); img.src = src; return img; }
 let backGround = img( "./assets/towerDefense.png" );
 const place2d = []
@@ -26,15 +27,9 @@ place2d.forEach( ( row, y ) =>
         }
     } )
 } )
-/*utils*/
-/*class*/
-
-/*class*/
-
 let enemies = [];
 let buildings = [];
 let activeTile = undefined;
-
 let wave = 2
 function spawn ()
 {
@@ -51,15 +46,15 @@ function spawn ()
 }
 let health = 5
 let id
+let currency = 100
 hearth.innerText = health
 spawn()
-
 function play ()
 {
     id = requestAnimationFrame( play );
     ctx.drawImage( backGround, 0, 0, canvas.width, canvas.height )/*background*/
     hearth.innerText = health
-
+    coins.innerText = currency
     for ( let i = enemies.length - 1; i >= 0; i-- )
     {
         const enemy = enemies[ i ]
@@ -121,6 +116,7 @@ function play ()
                     if ( index > -1 )
                     {
                         enemies.splice( index, 1 )
+                        currency += 25
                     }
                     if ( enemies.length === 0 )
                     {
@@ -134,7 +130,6 @@ function play ()
         }
     } )
 }
-
 window.onload = function ()
 {
     console.log( hearth )
@@ -153,8 +148,9 @@ function gameOver ()
 }
 canvas.addEventListener( "click", e =>
 {
-    if ( activeTile && !activeTile.live )
+    if ( activeTile && !activeTile.live && currency >= 100 )
     {
+        currency -= 100
         buildings.push( new Building( {
             pos: {
                 x: activeTile.pos.x,
@@ -164,7 +160,6 @@ canvas.addEventListener( "click", e =>
         activeTile.live = true
     }
 } )
-
 window.addEventListener( "mousemove", e =>
 {
     mouse.x = e.clientX
@@ -189,7 +184,6 @@ window.addEventListener( "mouseleave", e =>
     mouse.x = 0
     mouse.y = 0
 } )
-
 window.addEventListener( "keypress", e =>
 {
     switch ( e.key )

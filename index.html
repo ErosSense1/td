@@ -1,75 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        *{
-            margin: unset;
-        }
-        body{
-            background: #0e1129;
-        }
-        canvas{
-            position: absolute;
-        }
-        #xd{
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 50vh;
-            left: 50vw;
-            transform: translate(-60%,-125%);
-            font-size: 100px;
-            visibility: hidden;
-            font-family: 'Alfa Slab One', cursive;
-            color: #FFFFFF;
+      * {
+        margin: unset;
+      }
+      body {
+        background: #0e1129;
+      }
+      canvas {
+        position: absolute;
+        visibility: visible;
+      }
+      #xd {
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 50vh;
+        left: 50vw;
+        transform: translate(-60%, -125%);
+        font-size: 100px;
+        visibility: hidden;
+        font-family: "Alfa Slab One", cursive;
+        color: #ffffff;
 
-text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
-        }
-        #hearts{
-            position: absolute;
-            font-size: 50px;
-            left: 1200px;
-            visibility: visible;
-            font-family: 'Alfa Slab One', cursive;
-            color: #bc2e1e;
-            text-shadow: 0 1px 0px #378ab4,
-                        1px 0 0px #5dabcd,
-                        1px 2px 1px #378ab4, 
-                        2px 1px 1px #5dabcd, 
-                        2px 3px 2px #378ab4, 
-                        3px 2px 2px #5dabcd, 
-                        3px 4px 2px #378ab4, 
-                        3px 3px #5dabcd, 
-                        4px 5px 3px #378ab4, 
-                        5px 4px 2px #5dabcd, 
-                        5px 6px 2px #378ab4, 
-                        6px 5px 2px #5dabcd, 
-                        6px 7px 1px #378ab4, 
-                        7px 6px 1px #5dabcd, 
-                        7px 8px 0px #378ab4, 
-                        8px 7px 0px #5dabcd;
-        }
+        text-shadow: 0 -1px 4px #fff, 0 -2px 10px #ff0, 0 -10px 20px #ff8000,
+          0 -18px 40px #f00;
+      }
+      #hearts {
+        position: absolute;
+        font-size: 50px;
+        left: 1200px;
+        visibility: visible;
+        font-family: "Alfa Slab One", cursive;
+        color: crimson;
+        text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4,
+          2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd,
+          3px 4px 2px #378ab4, 3px 3px #5dabcd, 4px 5px 3px #378ab4,
+          5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd,
+          6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4,
+          8px 7px 0px #5dabcd;
+      }
+      svg {
+        position: absolute;
+        top: 10px;
+        left: 1130px;
+        height: 50px;
+        color: rgb(220, 20, 60);
+      }
+
+      #out {
+        color: #171c41;
+      }
+      #coins {
+        position: absolute;
+        font-size: 50px;
+        left: 1150px;
+        top: 50px;
+        visibility: visible;
+        font-family: "Alfa Slab One", cursive;
+        color: #eddb1c;
+        text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4,
+          2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd,
+          3px 4px 2px #378ab4, 3px 3px #5dabcd, 4px 5px 3px #378ab4,
+          5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd,
+          6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4,
+          8px 7px 0px #5dabcd;
+      }
+      #coin {
+        position: absolute;
+        top: 60px;
+        left: 1100px;
+        height: 50px;
+        color: #eddb1c;
+      }
+      #out-coins {
+        position: absolute;
+        top: 60px;
+        left: 1100px;
+        height: 50px;
+        color: #000000;
+      }
     </style>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <title>tower defense</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <canvas id="canvas"></canvas>
-    <div id="hearts">10</div>
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="w-5 h-5"
+      >
+        <path
+          d="M9.653 16.915l-.005-.003-.019-.01a20.759 20.759 0 01-1.162-.682 22.045 22.045 0 01-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 018-2.828A4.5 4.5 0 0118 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 01-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 01-.69.001l-.002-.001z"
+        />
+      </svg>
+      <svg
+        id="out"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+        />
+      </svg>
+
+      <div id="hearts">5</div>
+      <svg
+        id="coin"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="w-5 h-5"
+      >
+        <path
+          d="M10.75 10.818v2.614A3.13 3.13 0 0011.888 13c.482-.315.612-.648.612-.875 0-.227-.13-.56-.612-.875a3.13 3.13 0 00-1.138-.432zM8.33 8.62c.053.055.115.11.184.164.208.16.46.284.736.363V6.603a2.45 2.45 0 00-.35.13c-.14.065-.27.143-.386.233-.377.292-.514.627-.514.909 0 .184.058.39.202.592.037.051.08.102.128.152z"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-6a.75.75 0 01.75.75v.316a3.78 3.78 0 011.653.713c.426.33.744.74.925 1.2a.75.75 0 01-1.395.55 1.35 1.35 0 00-.447-.563 2.187 2.187 0 00-.736-.363V9.3c.698.093 1.383.32 1.959.696.787.514 1.29 1.27 1.29 2.13 0 .86-.504 1.616-1.29 2.13-.576.377-1.261.603-1.96.696v.299a.75.75 0 11-1.5 0v-.3c-.697-.092-1.382-.318-1.958-.695-.482-.315-.857-.717-1.078-1.188a.75.75 0 111.359-.636c.08.173.245.376.54.569.313.205.706.353 1.138.432v-2.748a3.782 3.782 0 01-1.653-.713C6.9 9.433 6.5 8.681 6.5 7.875c0-.805.4-1.558 1.097-2.096a3.78 3.78 0 011.653-.713V4.75A.75.75 0 0110 4z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <svg
+        id="out-coins"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+
+      <div id="coins">100</div>
+    </div>
     <div id="xd">Game Over</div>
-</body>
+  </body>
 
-
-<script src="/js/place.js"></script>
-<script src="/js/waypoints.js"></script>
-<script src="/js/class.js"></script>
-<script src="/js/main.js"></script>
+  <script src="/js/place.js"></script>
+  <script src="/js/waypoints.js"></script>
+  <script src="./js/classes/sprite.js"></script>
+  <script src="./js/classes/tile.js"></script>
+  <script src="./js/classes/enemy.js"></script>
+  <script src="./js/classes/projectile.js"></script>
+  <script src="./js/classes/buildings.js"></script>
+  <script src="/js/main.js"></script>
 </html>
