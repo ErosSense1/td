@@ -5,7 +5,7 @@ estare abierto a opiniones y feedback para mejorar tanto la dificultad y las mod
 
 version **_0.1.4_**
 
-cambios:
+cambios(0.1.4):
 
 - daño adaptado en relacion a las oleadas.
 - 10 vida(+5 anterior).
