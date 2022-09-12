@@ -20,6 +20,10 @@ class Tile
             mouse.y < this.pos.y + 64 )
         {
             this.color = "white"
+            ctx.fillStyle = "rgba(0,0,100,0.06)"
+            ctx.beginPath()
+            ctx.arc( this.pos.x + 64, this.pos.y + 32, 300, 0, Math.PI * 2 )
+            ctx.fill()
         } else
         {
             this.color = 'rgba(255,255,255, 0.15)'

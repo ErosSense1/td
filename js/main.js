@@ -30,10 +30,10 @@ place2d.forEach( ( row, y ) =>
 let enemies = [];
 let buildings = [];
 let activeTile = undefined;
-let wave = 2
+let wave = 3
 function spawn ()
 {
-    for ( let i = 0; i < wave; i++ )
+    for ( let i = 1; i < wave; i++ )
     {
         const offSet = i * 150;
         enemies.push( new Enemy( {
