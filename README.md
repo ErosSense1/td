@@ -15,7 +15,7 @@ cambios(0.1.5):
 
 - niveles para las torres:
   | color | daño | precio |
-  | --- | --- | --- |
+  | :---: | :---: | :---: |
   | azul | normal | 100 |
   | rojo | x2 | 200 |
   | verde | x5 | 500 |
