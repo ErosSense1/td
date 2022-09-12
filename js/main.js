@@ -2,6 +2,8 @@
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const pause = document.getElementById("pause");
+const unpause = document.getElementById("play");
 canvas.width = 1280;
 canvas.height = 768;
 let hearth = document.getElementById("hearts");
@@ -205,4 +207,14 @@ window.addEventListener("keypress", (e) => {
       gameOver();
       break;
   }
+});
+pause.addEventListener("click", (e) => {
+  pause.style.visibility = "hidden";
+  unpause.style.visibility = "visible";
+  cancelAnimationFrame(id);
+});
+unpause.addEventListener("click", (e) => {
+  unpause.style.visibility = "hidden";
+  pause.style.visibility = "visible";
+  requestAnimationFrame(play);
 });

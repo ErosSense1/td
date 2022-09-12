@@ -19,3 +19,4 @@ cambios(0.1.5):
   | azul | normal | 100 |
   | rojo | x2 | 200 |
   | verde | x5 | 500 |
+- añadido boton de pausa.
