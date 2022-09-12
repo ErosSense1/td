@@ -47,7 +47,7 @@ function spawn() {
 let health = 10;
 let id;
 let currency = 100;
-
+let damage = 0;
 hearth.innerText = health;
 spawn();
 function play() {
@@ -55,7 +55,7 @@ function play() {
   ctx.drawImage(backGround, 0, 0, canvas.width, canvas.height); /*background*/
   hearth.innerText = health;
   coins.innerText = currency;
-  let damage = 50 / speed;
+  damage = 50 / speed;
   for (let i = enemies.length - 1; i >= 0; i--) {
     const enemy = enemies[i];
     ctx.fillStyle = "red";
@@ -98,7 +98,7 @@ function play() {
 
       //hit
       if (Dist < bullet.enemy.rad + bullet.rad) {
-        bullet.enemy.health -= damage;
+        bullet.enemy.health -= build.dm;
         if (bullet.enemy.health <= 0) {
           const index = enemies.findIndex((enemy) => {
             return bullet.enemy === enemy;
@@ -132,6 +132,36 @@ function gameOver() {
   over.style.visibility = "visible";
 }
 canvas.addEventListener("click", (e) => {
+  if (activeTile && activeTile.live && currency >= 500) {
+    currency -= 500;
+    for (let i = 0; i < buildings.length; i++) {
+      const build = buildings[i];
+      if (
+        mouse.x > build.pos.x &&
+        mouse.x < build.pos.x + 64 &&
+        mouse.y > build.pos.y &&
+        mouse.y < build.pos.y + 64
+      ) {
+        build.dm = damage * 5;
+        build.color = "green";
+      }
+    }
+  }
+  if (activeTile && activeTile.live && currency >= 200) {
+    currency -= 200;
+    for (let i = 0; i < buildings.length; i++) {
+      const build = buildings[i];
+      if (
+        mouse.x > build.pos.x &&
+        mouse.x < build.pos.x + 64 &&
+        mouse.y > build.pos.y &&
+        mouse.y < build.pos.y + 64
+      ) {
+        build.dm = damage * 2;
+        build.color = "red";
+      }
+    }
+  }
   if (activeTile && !activeTile.live && currency >= 100) {
     currency -= 100;
     buildings.push(
@@ -140,6 +170,8 @@ canvas.addEventListener("click", (e) => {
           x: activeTile.pos.x,
           y: activeTile.pos.y,
         },
+        dm: damage,
+        color: "blue",
       })
     );
     activeTile.live = true;
