@@ -41,10 +41,10 @@ cambios(0.1.6):
 
 # Como jugar
 
-las mecanicas son simples para colocar una torreta debes hacer click en una casilla blanca que esta en el mapa, para subir de nivel tu torreta y recargar su municion deberas de hacer click sobre la torreta a la cual quieres subir de nivel y/o recargar municion puedes ver los precios por nivel de torretas en cambios de la version 0.1.6.
+Las mecanicas son simples para colocar una torreta debes hacer click en una casilla blanca que esta en el mapa, para subir de nivel tu torreta y recargar su municion deberas de hacer click sobre la torreta a la cual quieres subir de nivel y/o recargar municion puedes ver los precios por nivel de torretas en cambios de la version **0.1.6**.
 
 Ten en cuenta que conforme el tiempo avanza las torretas haran menos daño pero dispararan mas rapido y los enemigos se moveran mas rapido para considerar que has ganado deberas tener todas tus torretas al nivel maximo, en prontas actualizaciones se añadira una manera de ganar 100% fiable.
 
 Este juego se desarrollara en base que tan dificil pero jugable se puede volver, de momento disfruta el juego y espera por proximas actualizaciones.
-posdata:
-  Gracias por jugar!
+
+> Gracias por jugar!
