@@ -3,7 +3,7 @@
 Juego hecho para experiencia personal en la modalidad de **_tower defense_**
 estare abierto a opiniones y feedback para mejorar tanto la dificultad y las modalidades del juego.
 
-version **_0.1.6_**
+version **_0.1.7_**
 
 cambios(0.1.4):
 
