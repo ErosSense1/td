@@ -25,6 +25,8 @@ class Building extends Sprite {
     this.spawnTime = 0;
     this.dm = dm;
     this.color = color;
+    this.life = 50;
+    this.live = 50;
   }
   draw() {
     super.draw();

@@ -52,6 +52,24 @@ let currency = 100;
 let damage = 0;
 hearth.innerText = health;
 spawn();
+window.addEventListener("mousemove", (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
+  activeTile = null;
+  for (let i = 0; i < placementTiles.length; i++) {
+    const tile = placementTiles[i];
+    if (
+      mouse.x > tile.pos.x &&
+      mouse.x < tile.pos.x + 64 &&
+      mouse.y > tile.pos.y &&
+      mouse.y < tile.pos.y + 64
+    ) {
+      activeTile = tile;
+      break;
+    }
+  }
+});
 function play() {
   id = requestAnimationFrame(play);
   ctx.drawImage(backGround, 0, 0, canvas.width, canvas.height); /*background*/
@@ -90,39 +108,44 @@ function play() {
       return Dist < enemy.rad + build.rad;
     });
     build.target = closeEnemies[0];
-    for (let i = build.projectiles.length - 1; i >= 0; i--) {
-      const bullet = build.projectiles[i];
-      bullet.update();
+    if (build.life > 0) {
+      for (let i = build.projectiles.length - 1; i >= 0; i--) {
+        const bullet = build.projectiles[i];
+        bullet.update();
 
-      const xDiff = bullet.enemy.center.x - bullet.pos.x;
-      const yDiff = bullet.enemy.center.y - bullet.pos.y;
-      const Dist = Math.hypot(xDiff, yDiff);
+        const xDiff = bullet.enemy.center.x - bullet.pos.x;
+        const yDiff = bullet.enemy.center.y - bullet.pos.y;
+        const Dist = Math.hypot(xDiff, yDiff);
 
-      //hit
-      if (Dist < bullet.enemy.rad + bullet.rad) {
-        bullet.enemy.health -= build.dm;
-        if (bullet.enemy.health <= 0) {
-          const index = enemies.findIndex((enemy) => {
-            return bullet.enemy === enemy;
-          });
-          if (index > -1) {
-            enemies.splice(index, 1);
-            currency += 25;
+        //hit
+        if (Dist < bullet.enemy.rad + bullet.rad) {
+          build.life -= 0.5;
+          bullet.enemy.health -= build.dm;
+          if (bullet.enemy.health <= 0) {
+            const index = enemies.findIndex((enemy) => {
+              return bullet.enemy === enemy;
+            });
+            if (index > -1) {
+              enemies.splice(index, 1);
+              currency += 25;
+            }
+            if (enemies.length === 0) {
+              speed += 0.5;
+              wave += 2;
+              spawn();
+            }
           }
-          if (enemies.length === 0) {
-            speed += 0.5;
-            wave += 2;
-            spawn();
-          }
+          build.projectiles.splice(i, 1);
         }
-        build.projectiles.splice(i, 1);
       }
+    } else {
+      build.projectiles = [];
     }
   });
 }
 window.onload = function () {
-  console.log(hearth);
   play();
+  buildLife();
 };
 const mouse = {
   x: undefined,
@@ -132,6 +155,49 @@ function gameOver() {
   cancelAnimationFrame(id);
 
   over.style.visibility = "visible";
+}
+
+window.addEventListener("mouseleave", (e) => {
+  mouse.x = 0;
+  mouse.y = 0;
+});
+pause.addEventListener("click", (e) => {
+  pause.style.visibility = "hidden";
+  unpause.style.visibility = "visible";
+  cancelAnimationFrame(id);
+});
+unpause.addEventListener("click", (e) => {
+  unpause.style.visibility = "hidden";
+  pause.style.visibility = "visible";
+  requestAnimationFrame(play);
+});
+function buildLife() {
+  requestAnimationFrame(buildLife);
+  buildings.forEach((build) => {
+    if (build.life > 0) {
+      ctx.fillStyle = "black";
+      ctx.fillRect(
+        build.pos.x + build.live / 10 - 1,
+        build.pos.y + 31,
+        build.live / 2 + 2,
+        12
+      );
+      ctx.fillStyle = "white";
+      ctx.fillRect(
+        build.pos.x + build.live / 10,
+        build.pos.y + 32,
+        build.live / 2,
+        10
+      );
+      ctx.fillStyle = build.color;
+      ctx.fillRect(
+        build.pos.x + build.live / 10,
+        build.pos.y + 32,
+        build.life / 2,
+        10
+      );
+    }
+  });
 }
 canvas.addEventListener("click", (e) => {
   if (activeTile && activeTile.live && currency >= 500) {
@@ -146,10 +212,27 @@ canvas.addEventListener("click", (e) => {
       ) {
         build.dm = damage * 5;
         build.color = "green";
+        build.life = 200;
+        build.live = 200;
       }
     }
-  }
-  if (activeTile && activeTile.live && currency >= 200) {
+  } else if (activeTile && activeTile.live && currency >= 300) {
+    currency -= 300;
+    for (let i = 0; i < buildings.length; i++) {
+      const build = buildings[i];
+      if (
+        mouse.x > build.pos.x &&
+        mouse.x < build.pos.x + 64 &&
+        mouse.y > build.pos.y &&
+        mouse.y < build.pos.y + 64
+      ) {
+        build.dm = damage * 3.5;
+        build.color = "purple";
+        build.life = 150;
+        build.live = 150;
+      }
+    }
+  } else if (activeTile && activeTile.live && currency >= 200) {
     currency -= 200;
     for (let i = 0; i < buildings.length; i++) {
       const build = buildings[i];
@@ -161,6 +244,8 @@ canvas.addEventListener("click", (e) => {
       ) {
         build.dm = damage * 2;
         build.color = "red";
+        build.life = 100;
+        build.live = 100;
       }
     }
   }
@@ -178,43 +263,4 @@ canvas.addEventListener("click", (e) => {
     );
     activeTile.live = true;
   }
-});
-window.addEventListener("mousemove", (e) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-
-  activeTile = null;
-  for (let i = 0; i < placementTiles.length; i++) {
-    const tile = placementTiles[i];
-    if (
-      mouse.x > tile.pos.x &&
-      mouse.x < tile.pos.x + 64 &&
-      mouse.y > tile.pos.y &&
-      mouse.y < tile.pos.y + 64
-    ) {
-      activeTile = tile;
-      break;
-    }
-  }
-});
-window.addEventListener("mouseleave", (e) => {
-  mouse.x = 0;
-  mouse.y = 0;
-});
-window.addEventListener("keypress", (e) => {
-  switch (e.key) {
-    case "º":
-      gameOver();
-      break;
-  }
-});
-pause.addEventListener("click", (e) => {
-  pause.style.visibility = "hidden";
-  unpause.style.visibility = "visible";
-  cancelAnimationFrame(id);
-});
-unpause.addEventListener("click", (e) => {
-  unpause.style.visibility = "hidden";
-  pause.style.visibility = "visible";
-  requestAnimationFrame(play);
 });
