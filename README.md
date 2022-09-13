@@ -46,4 +46,5 @@ las mecanicas son simples para colocar una torreta debes hacer click en una casi
 Ten en cuenta que conforme el tiempo avanza las torretas haran menos daño pero dispararan mas rapido y los enemigos se moveran mas rapido para considerar que has ganado deberas tener todas tus torretas al nivel maximo, en prontas actualizaciones se añadira una manera de ganar 100% fiable.
 
 Este juego se desarrollara en base que tan dificil pero jugable se puede volver, de momento disfruta el juego y espera por proximas actualizaciones.
-posdata: Gracias por jugar!
+posdata:
+  Gracias por jugar!
