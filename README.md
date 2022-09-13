@@ -39,11 +39,28 @@ cambios(0.1.6):
   | 3 | 300 disparos |
   | 4 | 400 disparos |
 
+cambios(0.1.7):
+
+- nuevo nivel de torreta.
+- cambios en los precios de las mejoras.
+- daño inicial aumentado.
+- mejoras visuales.
+- añadido boton de reinicio.
+- añadido pantalla de victoria
+  > Torretas
+  - |  color  | nivel |  daño  | precio | disparos |
+    | :-----: | :---: | :----: | :----: | :------: |
+    |  azul   |   1   | normal |  100   |   100    |
+    |  rojo   |   2   |   x2   |  150   |   200    |
+    | morado  |   3   |  x3.5  |  200   |   300    |
+    |  verde  |   4   |   x5   |  250   |   400    |
+    | naranja |   4   |  x10   |  300   |   600    |
+
 # Como jugar
 
-Las mecanicas son simples para colocar una torreta debes hacer click en una casilla blanca que esta en el mapa, para subir de nivel tu torreta y recargar su municion deberas de hacer click sobre la torreta a la cual quieres subir de nivel y/o recargar municion puedes ver los precios por nivel de torretas en cambios de la version **0.1.6**.
+Las mecanicas son simples para colocar una torreta debes hacer click en una casilla blanca que esta en el mapa, para subir de nivel tu torreta y recargar su municion deberas de hacer click sobre la torreta a la cual quieres subir de nivel y/o recargar municion puedes ver los precios por nivel de torretas en cambios de la version **0.1.7**.
 
-Ten en cuenta que conforme el tiempo avanza las torretas haran menos daño pero dispararan mas rapido y los enemigos se moveran mas rapido para considerar que has ganado deberas tener todas tus torretas al nivel maximo, en prontas actualizaciones se añadira una manera de ganar 100% fiable.
+Ten en cuenta que conforme el tiempo avanza las torretas haran menos daño pero dispararan mas rapido y los enemigos se moveran mas rapido para ganar todas las casillas deben tener una torreta de nivel maximo.
 
 Este juego se desarrollara en base que tan dificil pero jugable se puede volver, de momento disfruta el juego y espera por proximas actualizaciones.
 

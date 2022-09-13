@@ -27,6 +27,7 @@ class Building extends Sprite {
     this.color = color;
     this.life = 50;
     this.live = 50;
+    this.level = 1;
   }
   draw() {
     super.draw();
