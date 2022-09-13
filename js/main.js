@@ -164,12 +164,17 @@ window.addEventListener("mouseleave", (e) => {
 pause.addEventListener("click", (e) => {
   pause.style.visibility = "hidden";
   unpause.style.visibility = "visible";
+  over.innerText = "PAUSE";
+  over.style.visibility = "visible";
   cancelAnimationFrame(id);
 });
 unpause.addEventListener("click", (e) => {
   unpause.style.visibility = "hidden";
   pause.style.visibility = "visible";
+  over.innerText = "Game Over";
+  over.style.visibility = "hidden";
   requestAnimationFrame(play);
+  requestAnimationFrame(buildLife);
 });
 function buildLife() {
   requestAnimationFrame(buildLife);
