@@ -3,7 +3,7 @@
 Juego hecho para experiencia personal en la modalidad de **_tower defense_**
 estare abierto a opiniones y feedback para mejorar tanto la dificultad y las modalidades del juego.
 
-version **_0.1.6_**
+version **_0.1.7_**
 
 cambios(0.1.4):
 
@@ -54,7 +54,7 @@ cambios(0.1.7):
     |  rojo   |   2   |   x2   |  150   |   200    |
     | morado  |   3   |  x3.5  |  200   |   300    |
     |  verde  |   4   |   x5   |  250   |   400    |
-    | naranja |   4   |  x10   |  300   |   600    |
+    | naranja |   5   |  x10   |  300   |   600    |
 
 # Como jugar
 
