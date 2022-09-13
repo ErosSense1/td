@@ -1,4 +1,4 @@
-# tower_defense
+# Tower defense
 
 Juego hecho para experiencia personal en la modalidad de **_tower defense_**
 estare abierto a opiniones y feedback para mejorar tanto la dificultad y las modalidades del juego.
@@ -38,3 +38,8 @@ cambios(0.1.6):
   | 2 | 200 disparos |
   | 3 | 300 disparos |
   | 4 | 400 disparos |
+
+#Como jugar
+
+las mecanicas son simples
+[!image](./assets/projectile.png)
