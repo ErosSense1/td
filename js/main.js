@@ -10,7 +10,8 @@ canvas.height = 768;
 let hearth = document.getElementById("hearts");
 const over = document.getElementById("xd");
 let coins = document.getElementById("coins");
-
+const hit = new Audio();
+hit.src = "./assets/Hit.wav";
 function img(src) {
   let img = new Image();
   img.src = src;
@@ -134,7 +135,7 @@ function play() {
   ctx.drawImage(backGround, 0, 0, canvas.width, canvas.height); /*background*/
   hearth.innerText = health;
   coins.innerText = currency;
-  damage = 50 / (speed - 1);
+  damage = 100 / speed;
   buildings.forEach((build) => {
     if (build.level === 1) {
       build.dm = damage;
@@ -152,7 +153,7 @@ function play() {
     const enemy = enemies[i];
     ctx.fillStyle = "red";
     enemy.update();
-    enemy.speed = speed;
+    enemy.speed = 3;
     if (enemy.pos.x > canvas.width) {
       enemies.shift();
       health--;
@@ -201,6 +202,7 @@ function play() {
 
         //hit
         if (Dist < bullet.enemy.rad + bullet.rad) {
+          hit.play();
           build.life -= 0.5;
           bullet.enemy.health -= build.dm;
           if (bullet.enemy.health <= 0) {
