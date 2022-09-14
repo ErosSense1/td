@@ -65,3 +65,8 @@ Ten en cuenta que conforme el tiempo avanza las torretas haran menos daño pero 
 Este juego se desarrollara en base que tan dificil pero jugable se puede volver, de momento disfruta el juego y espera por proximas actualizaciones.
 
 > Gracias por jugar!
+<details><summary>CLICK ME</summary>
+<p>
+  <a href="https://tower-defense-eros.netlify.app/">Jugar</a>
+</p>
+</details>
